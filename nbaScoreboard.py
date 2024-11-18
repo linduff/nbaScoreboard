@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from nba_api.live.nba.endpoints import scoreboard
 
-games = scoreboard.ScoreBoard().get_json()
+games = scoreboard.ScoreBoard().get_dict()
 print(games)
 
 app = Flask(__name__)
