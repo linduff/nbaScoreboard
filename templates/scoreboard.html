@@ -7,7 +7,7 @@
 </head>
 <body>
     NBA SCOREBOARD
-    {% for game in games["scoreboard"]["games"] %}
+    {% for game in games %}
     <p>{{game["awayTeam"]["teamName"]}} vs. {{game["homeTeam"]["teamName"]}} - game["gameEt"]</p>
     {% endfor %}
 </body>
