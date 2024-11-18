@@ -8,7 +8,7 @@
 <body>
     NBA SCOREBOARD
     {% for game in games %}
-    <p>{{game["awayTeam"]["teamName"]}} vs. {{game["homeTeam"]["teamName"]}} - game["gameEt"]</p>
+    <p>{{game["awayTeam"]["teamName"]}} vs. {{game["homeTeam"]["teamName"]}} - {{game["gameEt"]}}</p>
     {% endfor %}
 </body>
 </html>
