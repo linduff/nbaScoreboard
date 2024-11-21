@@ -9,3 +9,5 @@ app = Flask(__name__)
 @app.route('/')
 def scoreboard():
     return render_template('scoreboard.html', games = games["scoreboard"]["games"])
+
+app.run(host="0.0.0.0")
