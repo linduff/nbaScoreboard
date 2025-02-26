@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <title>NBA SCOREBOARD</title>
+</head>
+<body>
+    <div class="container">
+        <h1>NBA Team Schedule</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Opponent</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in season %}
+                <tr>
+                    <td>{{game[2]}}</td>
+                    <td>{{game[3]}}</td>
+                    <td>{{game[4]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
