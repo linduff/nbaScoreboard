@@ -1,16 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles.css') }}"
+    />
     <title>NBA SCOREBOARD</title>
-</head>
-<body>
-    NBA SCOREBOARD
-    {% for game in games %}
-    <p>{{game["awayTeam"]["teamName"]}} vs. {{game["homeTeam"]["teamName"]}}</p>
-    <p>{{game["gameStatusText"]}} - {{game["gameClock"]}}</p>
-    <p>{{game["awayTeam"]["score"]}} - {{game["homeTeam"]["score"]}}</p><br>
-    {% endfor %}
-</body>
+  </head>
+  <body>
+    <div class="container">
+      {% for game in games %}
+      <div class="card" onclick="openModal('game1')">
+        <div class="team-logo">
+          <img
+            src="https://cdn.nba.com/logos/nba/{{game['home_id']}}/primary/D/logo.svg"
+            alt="{{game['home_abbreviation']}} Logo"
+          />
+          <div class="team-name">{{game['home_name']}}</div>
+          {% if game['game_status_id'] != 1 %}
+          <div class="score">{{game['home_points']}}</div>
+          {% endif %}
+        </div>
+        <div class="game-info">
+          <div class="game-status">{{game['game_status_text']}}</div>
+          {% if game['game_status_id'] != 1 %}
+          <div class="grid-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            <div class="grid-item">4</div>
+            <div class="grid-item">F</div>
+          </div>
+          <div class="grid-container">
+            <div class="grid-item">{{game['home_q1']}}</div>
+            <div class="grid-item">{{game['home_q2']}}</div>
+            <div class="grid-item">{{game['home_q3']}}</div>
+            <div class="grid-item">{{game['home_q4']}}</div>
+            <div class="grid-item">{{game['home_points']}}</div>
+          </div>
+          <div class="grid-container">
+            <div class="grid-item">{{game['away_q1']}}</div>
+            <div class="grid-item">{{game['away_q2']}}</div>
+            <div class="grid-item">{{game['away_q3']}}</div>
+            <div class="grid-item">{{game['away_q4']}}</div>
+            <div class="grid-item">{{game['away_points']}}</div>
+          </div>
+          {% endif %}
+        </div>
+        <div class="team-logo">
+          <img
+            src="https://cdn.nba.com/logos/nba/{{game['away_id']}}/primary/D/logo.svg"
+            alt="{{game['away_abbreviation']}} Logo"
+          />
+          <div class="team-name">{{game['away_name']}}</div>
+          {% if game['game_status_id'] != 1 %}
+          <div class="score">{{game['away_points']}}</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-info">STATS GO HERE</div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 </html>
